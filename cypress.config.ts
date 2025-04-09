@@ -1,9 +1,15 @@
-const { defineConfig } = require("cypress");
+import { defineConfig } from 'cypress'
+import * as dotenv from 'dotenv';
 
-module.exports = defineConfig({
+dotenv.config();
+
+export default defineConfig({
   e2e: {
-    setupNodeEvents(on, config) {
-      // implement node event listeners here
-    },
+    baseUrl: 'https://www.redmine.org',
+    supportFile: 'cypress/support/e2e.ts',
   },
-});
+  env: {
+    user: process.env.CYPRESS_USER,
+    password: process.env.CYPRESS_PASSWORD,
+  }
+})

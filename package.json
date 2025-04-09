@@ -1,6 +1,7 @@
 {
   "devDependencies": {
     "cypress": "^14.2.1",
+    "dotenv": "^16.4.7",
     "typescript": "^5.8.3"
   }
 }
