@@ -1,16 +1,13 @@
 import { defineConfig } from "cypress";
-import * as dotenv from "dotenv";
+import { loadEnvConfig } from "./loadEnvConfig";
 
-dotenv.config();
+const config = loadEnvConfig();
 
 export default defineConfig({
   e2e: {
-    baseUrl: "https://www.redmine.org",
+    baseUrl: config.baseUrl,
     supportFile: "cypress/support/e2e.ts",
     specPattern: "**/*.{cy,spec}.ts",
   },
-  env: {
-    user: process.env.CYPRESS_USER,
-    password: process.env.CYPRESS_PASSWORD,
-  },
+  env: config.env,
 });
