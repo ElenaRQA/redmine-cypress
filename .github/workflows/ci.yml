@@ -6,21 +6,29 @@ on:
       - first_tests
   pull_request:
     branches:
-      - first_tests
+      - main
 
 jobs:
-  cypress:
+  cypress-run:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v2
+
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '14'
+
       - name: Install dependencies
         run: |
           npm install
+          
+      - name: Set up Cypress
+        run: |
+          npx cypress install
+
       - name: Run Cypress tests
         run: |
-          npx cypress run
+          npx cypress run --headless
