@@ -1,4 +1,5 @@
 import { loginPage } from "../pages";
+import credentials from "../../fixtures/credentials.json";
 
 describe("Login Tests", () => {
   it("should login successfully with valid credentials", () => {
@@ -7,14 +8,13 @@ describe("Login Tests", () => {
     loginPage.logoutBtn().should("be.visible");
   });
 
-  it("should show an error with invalid credentials from fixture", () => {
-    cy.fixture("credentials.json").then((creds) => {
-      const { username, password } = creds.invalidUser;
-      loginPage.visit("/login");
-      loginPage.login(username, password);
-      loginPage
-        .errorMessage()
-        .should("contain", "Неправильное имя пользователя или пароль");
-    });
+  it("should show an error with invalid credentials", () => {
+    const { username, password } = credentials.invalidUser;
+
+    loginPage.visit("/login");
+    loginPage.login(username, password);
+    loginPage
+      .errorMessage()
+      .should("contain", "Неправильное имя пользователя или пароль");
   });
 });

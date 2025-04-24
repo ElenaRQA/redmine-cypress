@@ -11,4 +11,6 @@ export default class HomePage extends Header {
   forumsTab = () => cy.get('#main-menu a[href="/projects/redmine/boards"]');
   repositoryTab = () =>
     cy.get('#main-menu a[href="/projects/redmine/repository"]');
+  latestNewsSection = () => cy.get("#content .news");
+  latestNewsItems = () => cy.get("#content .news .news-item");
 }
