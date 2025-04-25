@@ -15,7 +15,16 @@ describe("Home page main menu navigation", () => {
   it("should go to Roadmap and verify presence of roadmapTab", () => {
     homePage.roadmapTab().click();
     homePage.verifyUrlContains("/roadmap");
-    homePage.verifyTitle("Оперативный план - Redmine");
+    cy.document().then((doc) => {
+      const isEnglish = doc.documentElement.lang === "en";
+
+      if (isEnglish) {
+        homePage.verifyTitle("Roadmap - Redmine");
+      } else {
+        homePage.verifyTitle("Оперативный план - Redmine");
+      }
+    });
+    //homePage.verifyTitle("Оперативный план - Redmine");
   });
 
   it("should open Issues tab and search input should be visible", () => {

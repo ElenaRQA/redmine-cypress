@@ -13,8 +13,21 @@ describe("Login Tests", () => {
 
     loginPage.visit("/login");
     loginPage.login(username, password);
-    loginPage
-      .errorMessage()
-      .should("contain", "Неправильное имя пользователя или пароль");
+    cy.document().then((doc) => {
+      const isEnglish = doc.documentElement.lang === "en";
+
+      if (isEnglish) {
+        loginPage
+          .errorMessage()
+          .should("contain", "Incorrect username or password.");
+      } else {
+        loginPage
+          .errorMessage()
+          .should("contain", "Неправильное имя пользователя или пароль");
+      }
+    });
+    //loginPage
+    //.errorMessage()
+    //.should("contain", "Неправильное имя пользователя или пароль");
   });
 });
