@@ -21,9 +21,7 @@ describe("Login Tests", () => {
           .errorMessage()
           .should("contain", "Неправильное имя пользователя или пароль");
       } else {
-        loginPage
-          .errorMessage()
-          .should("contain", "<div#flash_error.flash.error>");
+        loginPage.errorMessage().should("contain", "Invalid user or password");
       }
     });
   });
