@@ -1,4 +1,4 @@
-import Header from "./header";
+import Header from "./headerPage";
 
 export default class HomePage extends Header {
   overviewTab = () => cy.get('#main-menu a[href="/projects/redmine"]');

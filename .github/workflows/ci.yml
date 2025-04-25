@@ -24,14 +24,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Create .env file
+      - name: Set environment variables
         run: |
-          echo "CYPRESS_BASE_URL=https://www.redmine.org" >> .env
-          echo "CYPRESS_USER=elenatester" >> .env
-          echo "CYPRESS_PASSWORD=elenatester" >> .env
-
-      - name: Load .env variables
-        run: cat .env >> $GITHUB_ENV
+          echo "CYPRESS_USER=${{ secrets.CYPRESS_USER }}" >> $GITHUB_ENV
+          echo "CYPRESS_PASSWORD=${{ secrets.CYPRESS_PASSWORD }}" >> $GITHUB_ENV
+          echo "CYPRESS_BASE_URL=${{ secrets.CYPRESS_BASE_URL }}" >> $GITHUB_ENV
+          echo "CYPRESS_LANGUAGE=${{ secrets.CYPRESS_LANGUAGE }}" >> $GITHUB_ENV
 
       - name: Run Cypress tests
         run: npx cypress run --browser chrome
