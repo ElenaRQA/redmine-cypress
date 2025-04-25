@@ -28,6 +28,6 @@ describe("Login Tests", () => {
     });
     //loginPage
     //.errorMessage()
-    //.should("contain", "Неправильное имя пользователя или пароль");
+    //.should("contain", "Неправильное имя пользователя или пароль"); //test
   });
 });
