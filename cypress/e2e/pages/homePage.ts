@@ -1,6 +1,6 @@
 import Header from "./headerPage";
 
-export default class HomePage extends Header {
+class HomePage extends Header {
   overviewTab = () => cy.get('#main-menu a[href="/projects/redmine"]');
   downloadTab = () => cy.get('#main-menu a[href="/projects/redmine/files"]');
   activityTab = () => cy.get('#main-menu a[href="/projects/redmine/activity"]');
@@ -14,3 +14,4 @@ export default class HomePage extends Header {
   latestNewsSection = () => cy.get("#content .news");
   latestNewsItems = () => cy.get("#content .news .news-item");
 }
+export default new HomePage();

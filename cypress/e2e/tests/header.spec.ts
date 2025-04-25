@@ -1,6 +1,4 @@
-import HomePage from "../pages/homePage";
-
-const homePage = new HomePage();
+import homePage from "../pages/homePage";
 
 describe("Header functionality", () => {
   beforeEach(() => {

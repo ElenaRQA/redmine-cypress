@@ -1,5 +1,5 @@
-import { loginPage } from "../pages";
 import credentials from "../../fixtures/credentials.json";
+import loginPage from "../pages/loginPage";
 
 describe("Login Tests", () => {
   it("should login successfully with valid credentials", () => {

@@ -1,6 +1,7 @@
+import { userData } from "../../support/getEnvData";
 import Header from "./headerPage";
 
-export default class LoginPage extends Header {
+class LoginPage extends Header {
   userNameInput = () => cy.get("#username");
   passwordInput = () => cy.get("#password");
   loginBtnSubmit = () => cy.get('input[name="login"]');
@@ -8,7 +9,7 @@ export default class LoginPage extends Header {
 
   loginWithEnvCredentials() {
     cy.visit("/login");
-    this.login(Cypress.env("user"), Cypress.env("password"));
+    this.login(userData.username, userData.password);
   }
 
   login(username: string, password: string) {
@@ -17,3 +18,4 @@ export default class LoginPage extends Header {
     this.loginBtnSubmit().click();
   }
 }
+export default new LoginPage();
