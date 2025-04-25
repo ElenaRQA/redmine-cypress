@@ -31,5 +31,5 @@ jobs:
           echo "CYPRESS_BASE_URL=${{ secrets.CYPRESS_BASE_URL }}" >> $GITHUB_ENV
           echo "CYPRESS_LANGUAGE=${{ secrets.CYPRESS_LANGUAGE }}" >> $GITHUB_ENV
 
-      - name: Run Cypress tests (headed mode)
-        run: npx cypress open --browser chrome
+      - name: Run Cypress tests
+        run: npx cypress run --browser chrome
