@@ -31,5 +31,17 @@ jobs:
           echo "CYPRESS_BASE_URL=${{ secrets.CYPRESS_BASE_URL }}" >> $GITHUB_ENV
           echo "CYPRESS_LANGUAGE=${{ secrets.CYPRESS_LANGUAGE }}" >> $GITHUB_ENV
 
-      - name: Run Cypress tests
-        run: npx cypress run --browser chrome
+      - name: Install Xvfb and dependencies
+        run: sudo apt-get install -y xvfb
+
+      - name: Start Xvfb
+        run: Xvfb :99 &
+
+      - name: Run Cypress Login Tests
+        run: DISPLAY=:99 npx cypress run --spec 'cypress/e2e/login.spec.ts' --browser chrome
+
+      - name: Run Cypress Home Page Tests
+        run: DISPLAY=:99 npx cypress run --spec 'cypress/e2e/homeTabs.spec.ts' --browser chrome
+
+      - name: Run Cypress Header Tests
+        run: DISPLAY=:99 npx cypress run --spec 'cypress/e2e/header.spec.ts' --browser chrome

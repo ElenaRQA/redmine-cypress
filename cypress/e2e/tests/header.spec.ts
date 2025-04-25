@@ -13,7 +13,6 @@ describe("Header functionality", () => {
 
   it("should open Projects from header and verify page title", () => {
     homePage.projectsLink().click();
-    //homePage.verifyTitle("Проекты - Redmine");
     cy.document().then((doc) => {
       const isRussian = doc.documentElement.lang === "ru";
 

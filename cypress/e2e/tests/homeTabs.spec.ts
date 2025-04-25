@@ -24,7 +24,6 @@ describe("Home page main menu navigation", () => {
         homePage.verifyTitle("Roadmap - Redmine");
       }
     });
-    //homePage.verifyTitle("Оперативный план - Redmine");
   });
 
   it("should open Issues tab and search input should be visible", () => {
