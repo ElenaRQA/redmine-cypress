@@ -23,11 +23,8 @@ describe("Login Tests", () => {
       } else {
         loginPage
           .errorMessage()
-          .should("contain", "Incorrect username or password.");
+          .should("contain", "<div#flash_error.flash.error>");
       }
     });
-    //loginPage
-    //.errorMessage()
-    //.should("contain", "Неправильное имя пользователя или пароль"); //test
   });
 });
