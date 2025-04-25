@@ -15,11 +15,11 @@ describe("Header functionality", () => {
     homePage.projectsLink().click();
     //homePage.verifyTitle("Проекты - Redmine");
     cy.document().then((doc) => {
-      const isEnglish = doc.documentElement.lang === "en";
+      const isRussian = doc.documentElement.lang === "ru";
 
-      if (isEnglish) {
-        homePage.verifyTitle("Projects - Redmine");
+      if (isRussian) {
         homePage.verifyTitle("Проекты - Redmine");
+        homePage.verifyTitle("Projects - Redmine");
       }
     });
   });

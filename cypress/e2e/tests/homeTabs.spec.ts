@@ -16,12 +16,12 @@ describe("Home page main menu navigation", () => {
     homePage.roadmapTab().click();
     homePage.verifyUrlContains("/roadmap");
     cy.document().then((doc) => {
-      const isEnglish = doc.documentElement.lang === "en";
+      const isRussian = doc.documentElement.lang === "ru";
 
-      if (isEnglish) {
-        homePage.verifyTitle("Roadmap - Redmine");
-      } else {
+      if (isRussian) {
         homePage.verifyTitle("Оперативный план - Redmine");
+      } else {
+        homePage.verifyTitle("Roadmap - Redmine");
       }
     });
     //homePage.verifyTitle("Оперативный план - Redmine");
