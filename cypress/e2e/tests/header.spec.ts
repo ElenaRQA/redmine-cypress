@@ -11,13 +11,10 @@ describe("Header functionality", () => {
 
   it("should open Projects from header and verify page title", () => {
     homePage.projectsLink().click();
-    cy.document().then((doc) => {
-      const isRussian = doc.documentElement.lang === "ru";
-
-      if (isRussian) {
-        homePage.verifyTitle("Проекты - Redmine");
-        homePage.verifyTitle("Projects - Redmine");
-      }
+    homePage.getPageLanguage().then((lang) => {
+      const expectedTitle =
+        lang === "ru" ? "Проекты - Redmine" : "Projects - Redmine";
+      homePage.verifyTitle(expectedTitle);
     });
   });
 

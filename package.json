@@ -1,4 +1,10 @@
 {
+  "name": "cypress-tests",
+  "version": "1.0.0",
+  "scripts": {
+    "cy:run:local": "cypress run --config-file cypress.config.ts --browser chrome",
+    "cy:run:ci": "cypress run --config-file cypress.config.ci.ts"
+  },
   "devDependencies": {
     "cypress": "^14.2.1",
     "dotenv": "^16.4.7",

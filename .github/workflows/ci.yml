@@ -2,34 +2,34 @@ name: Cypress Tests
 
 on:
   push:
-    branches:
-      - first_tests
+    branches: [first_tests]
   pull_request:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: 18
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Set environment variables
-        run: |
-          echo "CYPRESS_USER=${{ secrets.CYPRESS_USER }}" >> $GITHUB_ENV
-          echo "CYPRESS_PASSWORD=${{ secrets.CYPRESS_PASSWORD }}" >> $GITHUB_ENV
-          echo "CYPRESS_BASE_URL=${{ secrets.CYPRESS_BASE_URL }}" >> $GITHUB_ENV
-          echo "CYPRESS_LANGUAGE=${{ secrets.CYPRESS_LANGUAGE }}" >> $GITHUB_ENV
+      - name: Run Cypress CI config
+        run: npm run cy:run:ci
+        env:
+          CYPRESS_BASE_URL: ${{ secrets.CYPRESS_BASE_URL }}
+          CYPRESS_USER: ${{ secrets.CYPRESS_USER }}
+          CYPRESS_PASSWORD: ${{ secrets.CYPRESS_PASSWORD }}
 
-      - name: Run Cypress tests
-        run: npx cypress run --browser chrome
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: videos
+          path: ./cypress/videos/
+          retention-days: 1

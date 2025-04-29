@@ -13,16 +13,12 @@ describe("Login Tests", () => {
 
     loginPage.visit("/login");
     loginPage.login(username, password);
-    cy.document().then((doc) => {
-      const isRussian = doc.documentElement.lang === "ru";
-
-      if (isRussian) {
-        loginPage
-          .errorMessage()
-          .should("contain", "Неправильное имя пользователя или пароль");
-      } else {
-        loginPage.errorMessage().should("contain", "Invalid user or password");
-      }
+    loginPage.getPageLanguage().then((lang) => {
+      const expectedErrorMessage =
+        lang === "ru"
+          ? "Неправильное имя пользователя или пароль"
+          : "Invalid user or password";
+      loginPage.errorMessage().should("contain", expectedErrorMessage);
     });
   });
 });

@@ -13,14 +13,10 @@ describe("Home page main menu navigation", () => {
   it("should go to Roadmap and verify presence of roadmapTab", () => {
     homePage.roadmapTab().click();
     homePage.verifyUrlContains("/roadmap");
-    cy.document().then((doc) => {
-      const isRussian = doc.documentElement.lang === "ru";
-
-      if (isRussian) {
-        homePage.verifyTitle("Оперативный план - Redmine");
-      } else {
-        homePage.verifyTitle("Roadmap - Redmine");
-      }
+    homePage.getPageLanguage().then((lang) => {
+      const expectedTitle =
+        lang === "ru" ? "Оперативный план - Redmine" : "Roadmap - Redmine";
+      homePage.verifyTitle(expectedTitle);
     });
   });
 

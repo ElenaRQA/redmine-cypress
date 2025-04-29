@@ -14,4 +14,8 @@ export default abstract class Common {
   verifyElementContains(selector: string, text: string) {
     cy.get(selector).should("contain", text);
   }
+
+  getPageLanguage(): Cypress.Chainable<string> {
+    return cy.document().then((doc) => doc.documentElement.lang);
+  }
 }
