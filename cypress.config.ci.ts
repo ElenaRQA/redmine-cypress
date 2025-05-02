@@ -11,7 +11,7 @@ export default defineConfig({
     env: {
       user: process.env.CYPRESS_USER,
       password: process.env.CYPRESS_PASSWORD,
-      language: "ru",
+      language: "en",
     },
   },
 });
