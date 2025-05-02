@@ -3,8 +3,14 @@ export default abstract class Common {
     cy.visit(url);
   }
 
-  verifyTitle(expectedTitle: string) {
-    cy.title().should("eq", expectedTitle);
+  verifyTitle(lang: string, expectedTitleEn: string, expectedTitleRu: string) {
+    if (lang === "en") {
+      cy.title().should("eq", expectedTitleEn);
+    }
+
+    if (lang === "ru") {
+      cy.title().should("eq", expectedTitleRu);
+    }
   }
 
   verifyUrlContains(path: string) {

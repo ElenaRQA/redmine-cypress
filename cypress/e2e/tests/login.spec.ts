@@ -2,6 +2,8 @@ import credentials from "../../fixtures/credentials.json";
 import loginPage from "../pages/loginPage";
 
 describe("Login Tests", () => {
+  const { username, password } = credentials.invalidUser;
+
   it("should login successfully with valid credentials", () => {
     loginPage.visit("/login");
     loginPage.loginWithEnvCredentials();
@@ -9,8 +11,6 @@ describe("Login Tests", () => {
   });
 
   it("should show an error with invalid credentials", () => {
-    const { username, password } = credentials.invalidUser;
-
     loginPage.visit("/login");
     loginPage.login(username, password);
     loginPage.getPageLanguage().then((lang) => {
